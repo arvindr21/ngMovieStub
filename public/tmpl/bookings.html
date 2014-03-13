@@ -12,5 +12,8 @@
             <td>{{book.qty}}</td>
             <td>{{book.date}}</td>
         </tr>
+        <tr data-ng-hide="bookings">
+            <td colspan="3">You have not made any Movie Bookings yet.</td>
+        </tr>
     </tbody>
 </table>
