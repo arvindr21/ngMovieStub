@@ -1,0 +1,20 @@
+<h2>Book Movie Tickets</h2>
+<input type="text" placeholder="Search Movies" class="form-control" data-ng-model="search">
+
+<div class="">
+    <!-- Example row of columns -->
+    <div class="row movies-list">
+        <div class="col-md-4" data-ng-repeat="movie in movies | orderBy:'name':false | filter:search">
+            <h2>{{movie.name | uppercase}}</h2>
+            <p>
+                <img data-ng-src="{{movie.thumb}}" class="thumb-big">
+            </p>
+            <p>{{movie.review | limitTo:99}}...</p>
+            <p>
+                <span class="label label-warning availability">Availability ({{movie.availability}})</span>
+                <a data-ng-href="#/movie/{{movie.id}}" class="btn btn-primary ">Review</a>
+                <a data-ng-href="#/bookTickets/{{movie.id}}" class="btn btn-success " role="button" data-ng-disabled="movie.availability == 0">Book »</a>
+            </p>
+        </div>
+    </div>
+</div>

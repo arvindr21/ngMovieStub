@@ -1,0 +1,40 @@
+<a ng-click="back()" class="btn btn-info pull-right" href="javascript:">Back</a>
+
+<div ng-show="currMovie">
+    <h3>{{currMovie.name}}
+    </h3>
+    <span data-ng-repeat="i in getCount(currMovie.rating) track by $index" class="glyphicon glyphicon-star"></span>
+    <hr/>
+    <div class="row">
+        <div class="col-md-8">
+            <form role="form">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Quantity</label>
+                    <input type="number" name="input" data-ng-model="value" min="1" max="9" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Date</label>
+                    <select class="form-control" required>
+                        <option>Today</option>
+                        <option>Tomorow</option>
+                        <option>The Day After</option>
+                    </select>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" required>I Agree
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <h4>Review</h4>
+            <label class="text-justify">
+                <img data-ng-src="{{currMovie.thumb}}" class="bookThumb pull-left">{{currMovie.review}}
+            </label>
+        </div>
+    </div>
+</div>
+
+
