@@ -4,7 +4,7 @@ var express = require("express"),
 
 var bookings = [];
 var app = express();
-app.use(express.logger());
+//app.use(express.logger());
 app.use(express.json());
 app.use(express.urlencoded());
 app.set("view options", {
