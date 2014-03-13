@@ -1,4 +1,6 @@
 <a ng-click="back()" class="btn btn-info pull-right" href="javascript:">Back</a>
+<a data-ng-href="#/bookTickets/{{currMovie.id}}" class="btn btn-success pull-left" role="button" data-ng-disabled="movie.availability == 0">Book</a>
+<br/>
 <div ng-show="currMovie">
     <h3>{{currMovie.name}}</h3>
     <div class="row">

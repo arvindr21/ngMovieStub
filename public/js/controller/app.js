@@ -1,4 +1,4 @@
-function movieStubController($scope, movieStubFactory, $location) {
+movieStubApp.controller("movieStubController", function ($scope, movieStubFactory, $location) {
     $scope.headerSrc = "tmpl/header.html";
 
     $scope.movies = movieStubFactory.query();
@@ -31,15 +31,34 @@ function movieStubController($scope, movieStubFactory, $location) {
         return ($location.path()).indexOf(route) >= 0;
     }
 
-};
+});
 
-function movieDetailsController($scope, $routeParams) {
-    // inheriting from parent scope - movies {} will be available
+movieStubApp.controller("movieDetailsController", function ($scope, $routeParams) {
     $scope.getMovieById($routeParams.id);
-};
-
-function bookingDetailsController($scope) {};
-
-function bookTicketsController($scope, $routeParams) {
+});
+movieStubApp.controller("bookTicketsController", function ($scope, $http, $location, $routeParams) {
     $scope.getMovieById($routeParams.id);
-};
+    $scope.onlyNumbers = /^\d+$/;
+    $scope.formData = {};
+    $scope.formData.movie_id = $scope.currMovie.id;
+    $scope.formData.movie_name = $scope.currMovie.name;
+    $scope.formData.date = "Today"
+
+    $scope.processForm = function () {
+        console.log($scope.formData);
+        $http({
+            method: 'POST',
+            url: '/book',
+            data: $.param($scope.formData), // pass in data as strings
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            } // set the headers so angular passing info as form data (not request payload)
+        })
+            .success(function (data) {
+                $location.path("/bookings");
+            });
+    };
+});
+movieStubApp.controller("bookingDetailsController", function ($scope, movieStubBookingsFactory) {
+    $scope.bookings = movieStubBookingsFactory.query();
+});

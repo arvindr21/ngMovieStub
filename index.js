@@ -1,9 +1,12 @@
 var express = require("express"),
     fs = require('fs'),
-    port = 2595;
+    port = process.env.PORT || 2595;
 
+var bookings = [];
 var app = express();
 app.use(express.logger());
+app.use(express.json());
+app.use(express.urlencoded());
 app.set("view options", {
     layout: false
 });
@@ -16,6 +19,23 @@ app.get('/', function (req, res) {
 app.get('/movies', function (req, res) {
     var movies = require('./data/movies.json');
     res.json(movies);
+});
+
+
+app.get('/bookings', function (req, res) {
+    res.json(bookings);
+});
+
+app.post('/book', function (req, res) {
+    var data = {
+        'qty': req.body.qty,
+        'date': req.body.date,
+        'id': req.body.movie_id,
+        'name': req.body.movie_name
+    };
+    bookings.push(data);
+    // res.render('public/tmpl/bookings.html');
+    res.json(bookings);
 });
 
 app.listen(port);

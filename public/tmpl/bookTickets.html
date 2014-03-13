@@ -7,25 +7,22 @@
     <hr/>
     <div class="row">
         <div class="col-md-8">
-            <form role="form">
+            <form role="form" name="bookTickets" ng-submit="processForm()">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Quantity</label>
-                    <input type="number" name="input" data-ng-model="value" min="1" max="9" required>
+                    <label for="qty">Quantity</label>
+                    <input type="text" ng-model="formData.qty" name="qty" id="qty" ng-pattern="onlyNumbers" placeholder="Tickets Quantity" value="1" ng-model="qty" required>
+                    <span ng-hide="bookTickets.qty.$valid" class=" alert-danger">Please Enter a Valid Number</span>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Date</label>
-                    <select class="form-control" required>
+                    <label for="date">Date</label>
+                    <select ng-model="formData.date" class="form-control" name="date" id="date" required>
                         <option>Today</option>
                         <option>Tomorow</option>
                         <option>The Day After</option>
                     </select>
                 </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" required>I Agree
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+
+                <button ng-disabled="!(bookTickets.qty.$valid)" type="submit" class="btn btn-default">Submit</button>
             </form>
         </div>
         <div class="col-md-4">
