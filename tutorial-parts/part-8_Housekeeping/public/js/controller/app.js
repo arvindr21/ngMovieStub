@@ -1,4 +1,4 @@
-window.movieStubApp = angular.module('movieStubApp', []);
+window.movieStubApp = angular.module('movieStubApp', ['ngRoute']);
 
 movieStubApp.controller("movieStubController", function ($scope) {
     $scope.headerSrc = "tmpl/header.html";
@@ -39,4 +39,14 @@ movieStubApp.controller("movieStubController", function ($scope) {
             }
         }
     };
+    // A simple back function, that will help us navigate between views
+    $scope.back = function () {
+        window.history.back();
+    };
+    $scope.getCount = function (n) {
+        return new Array(n);
+    };
+});
+movieStubApp.controller("movieDetailsController", function ($scope, $routeParams) {
+    $scope.getMovieById($routeParams.id);
 });
