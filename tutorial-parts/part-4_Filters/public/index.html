@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html data-ng-app="movieStubApp">
+
+<head>
+    <title>Movie Stub - Book Movie Tickets Online</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="js/lib/angular.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/controller/app.js"></script>
+</head>
+
+<body class="container" data-ng-controller="movieStubController">
+    <h1>Movie Stub</h1>
+    <h4>Book Movie Tickets Online</h4>
+    <hr />
+    <h2>Filter Presentation</h2>
+    <ul>
+        <li data-ng-repeat="movie in movies | orderBy:'name':true">
+            {{movie.id}} - {{movie.name | uppercase}} - {{movie.rating}}
+        </li>
+    </ul>
+    <hr />
+    <h2>Searching Using Filters</h2>
+    <div class="row">
+        <div class="col-xs-3">
+            <h4>Tickets available for:</h4>
+        </div>
+        <div class="col-xs-3">
+            <input class="form-control" type="text" placeholder="Search a movie" data-ng-model="search">
+        </div>
+    </div>
+    <br/>
+    <ul>
+        <li data-ng-repeat="movie in movies | orderBy:'name':true | filter:search">
+            {{movie.id}} - {{movie.name | uppercase}} - {{movie.rating}}
+        </li>
+    </ul>
+    <hr/>
+    <h2>Filter | JSON</h2>
+    <pre>{{ movies | json }}</pre>
+</body>
+
+</html>

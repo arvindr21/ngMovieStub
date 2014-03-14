@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-xs-3">
+        <h4>Tickets available for:</h4>
+    </div>
+    <div class="col-xs-3">
+        <input class="form-control" type="text" placeholder="Search a movie" data-ng-model="search">
+    </div>
+</div>
+<ul>
+    <li data-ng-repeat="movie in movies | orderBy:'name':true | filter:search">
+        {{movie.name | uppercase}}
+        <a href="javascript:" data-ng-click="getMovieById(movie.id)">Availability</a>
+        <a ng-href="#/movie/{{movie.id}}">Review</a>
+    </li>
+</ul>
+<br/>
+<label data-ng-show="currMovie">Availabilty for {{currMovie.name}} is {{currMovie.availability}}</label>

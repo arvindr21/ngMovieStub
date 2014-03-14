@@ -1,0 +1,19 @@
+{
+  "name": "movieStub",
+  "version": "0.0.1",
+  "authors": [
+    "Arvind Ravulavaru <arvind.ravulavaru@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular": "~1.2.14",
+    "bootstrap": "~3.1.1"
+  }
+}
