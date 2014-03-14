@@ -1,0 +1,35 @@
+<a data-ng-click="back()" class="btn btn-info pull-right" href="javascript:">Back</a>
+
+<div ng-show="currMovie">
+    <h3>{{currMovie.name}}
+    </h3>
+    <span data-ng-repeat="i in getCount(currMovie.rating) track by $index" class="glyphicon glyphicon-star"></span>
+    <hr/>
+    <div class="row">
+        <div class="col-md-8">
+            <form role="form" name="bookTickets" data-ng-submit="processForm()">
+                <div class="form-group">
+                    <label for="qty">Quantity</label>
+                    <input type="text" data-ng-model="formData.qty" name="qty" id="qty" data-ng-pattern="onlyNumbers" placeholder="Tickets Quantity" value="1" data-ng-model="qty" required>
+                    <span data-ng-hide="bookTickets.qty.$valid" class=" alert-danger">Please Enter a Valid Number</span>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <select data-ng-model="formData.date" class="form-control" name="date" id="date" required>
+                        <option>Today</option>
+                        <option>Tomorow</option>
+                        <option>The Day After</option>
+                    </select>
+                </div>
+
+                <button data-ng-disabled="!(bookTickets.qty.$valid)" type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <h4>Review</h4>
+            <label class="text-justify">
+                <img data-ng-src="{{currMovie.thumb}}" class="bookThumb pull-left">{{currMovie.review}}
+            </label>
+        </div>
+    </div>
+</div>
